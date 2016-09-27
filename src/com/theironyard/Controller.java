@@ -21,7 +21,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void loadContacts() {
+    public void removeContact() {
 
     }
 
