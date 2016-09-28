@@ -14,10 +14,10 @@
             <TextField fx:id="nameField" text="Name" HBox.hgrow="ALWAYS" />
             <TextField fx:id="phoneField" text="Phone #" HBox.hgrow="ALWAYS" />
             <TextField fx:id="emailField" text="Email" HBox.hgrow="ALWAYS" />
-            <Button minWidth="-Infinity" mnemonicParsing="false" text="Add" />
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addContact" text="Add" />
             <Button minWidth="-Infinity" mnemonicParsing="false" text="Remove" />
          </children>
       </HBox>
-      <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
