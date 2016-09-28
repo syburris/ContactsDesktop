@@ -39,11 +39,8 @@ public class Controller implements Initializable {
         else {
             contacts.add(contact);
             nameField.clear();
-            nameField.setText("Name");
             phoneField.clear();
-            phoneField.setText("Phone #");
             emailField.clear();
-            emailField.setText("Email");
             saveContacts();
         }
     }
