@@ -32,12 +32,19 @@ public class Controller implements Initializable {
         Contact contact = new Contact(name, phone, email);
         contacts.add(contact);
         nameField.clear();
+        nameField.setText("Name");
         phoneField.clear();
+        phoneField.setText("Phone #");
         emailField.clear();
+        emailField.setText("Email");
     }
 
     public void removeContact() {
-
+        Contact contact = (Contact) list.getSelectionModel().getSelectedItem();
+        if (contact != null) {
+            contacts.remove(contact);
+            list.refresh();
+        }
     }
 
 
