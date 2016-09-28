@@ -8,9 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import jodd.json.JsonSerializer;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -55,15 +53,24 @@ public class Controller implements Initializable {
     }
 
     public void saveContacts() throws IOException {
-        File contactJson = new File("Contacts.json");
+        File contactsJson = new File("Contacts.json");
         JsonSerializer serializer = new JsonSerializer();
         ArrayList<Contact> contactArrayList = new ArrayList<>();
         contactArrayList.addAll(contacts);
         ContactWrapper wrappedContacts = new ContactWrapper(contactArrayList);
         String json = serializer.deep(true).serialize(wrappedContacts);
-        FileWriter writeJson = new FileWriter(contactJson);
+        FileWriter writeJson = new FileWriter(contactsJson);
         writeJson.write(json);
         writeJson.close();
+    }
+
+    public void loadContacts() throws IOException {
+        File contactsJson = new File("Contacts.json");
+        FileReader fileReader = new FileReader(contactsJson);
+        int fileSize = (int) contactsJson.length();
+        char[] jsonSize = new char[fileSize];
+        fileReader.read(jsonSize,0,fileSize);
+
     }
 
 
