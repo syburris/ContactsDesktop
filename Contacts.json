@@ -1,14 +1,1 @@
-{
-  "contacts": [
-    {
-      "email": "lksdjf@gail",
-      "name": "lskdjf",
-      "phoneNumber": "lskdjf"
-    },
-    {
-      "email": "lkasjdf@",
-      "name": "lsjdflj",
-      "phoneNumber": "1304980"
-    }
-  ]
-}
+{"contacts":[{"email":"email.com","name":"steven","phoneNumber":"38409"}]}

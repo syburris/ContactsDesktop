@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 
 import java.io.*;
@@ -70,14 +71,24 @@ public class Controller implements Initializable {
         File contactsJson = new File("Contacts.json");
         FileReader fileReader = new FileReader(contactsJson);
         int fileSize = (int) contactsJson.length();
-        char[] jsonSize = new char[fileSize];
-        fileReader.read(jsonSize,0,fileSize);
+        char[] json = new char[fileSize];
+        fileReader.read(json,0,fileSize);
+        JsonParser parser = new JsonParser();
+        ContactWrapper contactWrapper = parser.parse(json, ContactWrapper.class);
+        contacts = FXCollections.observableArrayList();
+        contacts.addAll(contactWrapper.getContacts());
+        list.setItems(contacts);
+
 
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        list.setItems(contacts);
+        try {
+            loadContacts();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
