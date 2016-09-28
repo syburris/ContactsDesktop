@@ -33,14 +33,19 @@ public class Controller implements Initializable {
         String phone = phoneField.getText();
         String email = emailField.getText();
         Contact contact = new Contact(name, phone, email);
-        contacts.add(contact);
-        nameField.clear();
-        nameField.setText("Name");
-        phoneField.clear();
-        phoneField.setText("Phone #");
-        emailField.clear();
-        emailField.setText("Email");
-        saveContacts();
+        if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || emailField.getText().isEmpty()) {
+            return;
+        }
+        else {
+            contacts.add(contact);
+            nameField.clear();
+            nameField.setText("Name");
+            phoneField.clear();
+            phoneField.setText("Phone #");
+            emailField.clear();
+            emailField.setText("Email");
+            saveContacts();
+        }
     }
 
     public void removeContact() throws IOException {
