@@ -67,28 +67,27 @@ public class Controller implements Initializable {
         writeJson.close();
     }
 
-    public void loadContacts() throws IOException {
+    public ContactWrapper loadContacts() throws IOException {
         File contactsJson = new File("Contacts.json");
         FileReader fileReader = new FileReader(contactsJson);
         int fileSize = (int) contactsJson.length();
         char[] json = new char[fileSize];
         fileReader.read(json,0,fileSize);
         JsonParser parser = new JsonParser();
-        ContactWrapper contactWrapper = parser.parse(json, ContactWrapper.class);
-        contacts = FXCollections.observableArrayList();
-        contacts.addAll(contactWrapper.getContacts());
-        list.setItems(contacts);
-
-
+        ContactWrapper cw = parser.parse(json, ContactWrapper.class);
+        System.out.println(cw.toString());
+        return cw;
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            loadContacts();
+           ArrayList<Contact> readContacts = loadContacts().getContacts();
+            contacts.setAll(readContacts);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        list.setItems(contacts);
     }
 }
